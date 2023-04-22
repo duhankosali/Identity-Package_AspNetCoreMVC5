@@ -1,0 +1,37 @@
+﻿@model UserCreateModel
+@{
+    Layout = "_Layout";
+}
+
+<form asp-action="Create" method="POST" class="p-4 w-75 mx-auto shadow">
+    <div class="mb-3">
+        <label>Kullanıcı Adı: </label>
+        <span class="text-danger" asp-validation-for="@Model.Username"></span>
+        <input asp-for="@Model.Username" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label>Şifre: </label>
+        <span class="text-danger" asp-validation-for="@Model.Password"></span>
+        <input type="password" asp-for="@Model.Password" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label>Kullanıcı Adı: </label>
+        <span class="text-danger" asp-validation-for="@Model.ConfirmPassword"></span>
+        <input type="password" asp-for="@Model.ConfirmPassword" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label>Email </label>
+        <span class="text-danger" asp-validation-for="@Model.Email"></span>
+        <input type="email" asp-for="@Model.Email" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label>Gender </label>
+        <span class="text-danger" asp-validation-for="@Model.Gender"></span>
+        <input asp-for="@Model.Gender" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </div>
+
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div> @*Yalnızca modeldeki hatalar burada gözükür.*@
+</form>

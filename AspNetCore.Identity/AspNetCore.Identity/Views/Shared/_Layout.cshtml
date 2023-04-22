@@ -1,0 +1,72 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Identity Application</title>
+    <link rel="stylesheet" href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        
+       
+        @if(User.IsInRole("Admin"))
+        {
+         <li class="nav-item">
+         <a asp-action="AdminPanel" asp-controller="Home" class="nav-link active" aria-current="page">Admin Panel</a>
+        </li>
+
+        <li class="nav-item">
+         <a asp-action="Index" asp-controller="User" class="nav-link active" aria-current="page">User List</a>
+        </li>
+        <li class="nav-item">
+         <a asp-action="Index" asp-controller="Role" class="nav-link active" aria-current="page">Role List</a>
+        </li>
+        }
+        else if(User.IsInRole("Member"))
+        {
+        <li class="nav-item">
+           <a asp-action="Panel" asp-controller="Home" class="nav-link active" aria-current="page">Member Panel</a>
+        </li>
+        }
+       
+        @if(User.Identity.IsAuthenticated)
+        {
+             <li class="nav-item">
+               <a asp-action="SignOut" asp-controller="Home" class="nav-link active" aria-current="page">Çıkış Yap</a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+          <a asp-action="Create" asp-controller="Home" class="nav-link active" aria-current="page">Kayıt Ol</a>
+        </li>
+             <li class="nav-item">
+           <a asp-action="SignIn" asp-controller="Home" class="nav-link active" aria-current="page">Giriş Yap</a>
+          </li>
+        }
+       
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+    </header>
+    <section>
+        <div class="container mt-2">
+        @RenderBody()
+         </div>
+    </section>
+    
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
